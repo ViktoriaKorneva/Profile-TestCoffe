@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Два пончика и чашка кофе | Premium</title>
+    
+    <!-- Подключение шрифта Inter (аналог Apple San Francisco) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS-переменные в стиле Apple (Светлая тема) */
+        :root {
+            --bg-color: #FBFBFD;
+            --surface-color: #FFFFFF;
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+            --accent-color: #000000;
+            --accent-hover: #333333;
+            --border-color: rgba(0, 0, 0, 0.05);
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Навигация с эффектом Glassmorphism */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 54px;
+            background-color: rgba(251, 251, 253, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 17px;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Кнопка в стиле Apple */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #FFFFFF;
+            padding: 14px 28px;
+            border-radius: 980px; /* Идеальный овал */
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.02);
+        }
+
+        /* Секции: Общие правила */
+        section {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 80px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Hero (Главный экран) */
+        .hero {
+            padding-top: 160px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1.2s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 80px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        .hero p {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            letter-spacing: -0.01em;
+            max-width: 700px;
+        }
+
+        .hero-image {
+            margin-top: 60px;
+            width: 100%;
+            max-width: 1000px;
+            height: 600px;
+            border-radius: 32px;
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        /* О компании */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            font-size: 21px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .about-text p span {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 600px;
+            border-radius: 32px;
+            object-fit: cover;
+        }
+
+        /* Меню (3 карточки) */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .menu-card {
+            background-color: var(--surface-color);
+            border-radius: 24px;
+            padding: 20px;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            cursor: pointer;
+        }
+
+        .menu-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 300px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-bottom: 24px;
+        }
+
+        .menu-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 8px;
+        }
+
+        .menu-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .menu-price {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Контакты (Темный блок в стиле Apple Pro) */
+        .contact-section {
+            background-color: #000000;
+            color: #F5F5F7;
+            padding: 120px 20px;
+            text-align: center;
+            border-radius: 40px;
+            max-width: 95%;
+            margin: 0 auto 40px;
+        }
+
+        .contact-section .section-title {
+            color: #FFFFFF;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .contact-item h4 {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+        }
+
+        .contact-item p {
+            font-size: 15px;
+            color: #86868B;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 64px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { height: 400px; }
+            .menu-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            nav { height: auto; padding: 15px 0; }
+            .nav-container { flex-direction: column; gap: 15px; }
+            .hero { padding-top: 140px; }
+            .hero h1 { font-size: 48px; }
+            .hero p { font-size: 21px; }
+            .hero-image { height: 350px; }
+            .section-title { font-size: 36px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+            section { padding: 80px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Два Пончика & Кофе</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Обзор</a></li>
+                <li><a href="#about">История</a></li>
+                <li><a href="#menu">Меню</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Главный экран -->
+    <section id="hero" class="hero">
+        <h1>Два пончика.<br>Одна идеальная чашка.</h1>
+        <p>Откройте для себя вкус, доведенный до абсолюта.</p>
+        <a href="#menu" class="btn">Изучить меню</a>
+        
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1920&q=80" alt="Идеальная чашка кофе" class="hero-image">
+    </section>
+
+    <!-- О нас -->
+    <section id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Создано с одержимостью.<br>Для вас.</h2>
+                <p><span>Мы не идем на компромиссы.</span> Когда мы создавали «Два пончика и чашка кофе», нашей целью было переосмыслить привычный ритуал. Никаких случайных ингредиентов. Только лучшее.</p>
+                <p>Мы используем исключительно 100% высокогорную арабику свежей обжарки и создаем выпечку по выверенным до грамма рецептам. Это не просто кофе. Это технологии, дизайн и вкус, слившиеся воедино.</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1000&q=80" alt="Эстетика нашей кофейни" class="about-image">
+        </div>
+    </section>
+
+    <!-- Меню -->
+    <section id="menu">
+        <h2 class="section-title">Фирменные напитки.</h2>
+        <p class="section-subtitle">Магия в каждом глотке.</p>
+        
+        <div class="menu-grid">
+            <!-- Позиция 1 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&w=800&q=80" alt="Apple Style Латте">
+                <h3>Signature Латте</h3>
+                <p>Шелковистая текстура взбитого молока, двойной шот эспрессо и едва уловимая нотка мадагаскарской ванили.</p>
+                <div class="menu-price">350 ₽</div>
+            </div>
+            
+            <!-- Позиция 2 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=800&q=80" alt="Айс Карамель">
+                <h3>Cold Brew Карамель</h3>
+                <p>Кофе холодного заваривания, который настаивается 18 часов. Подается с домашней соленой карамелью.</p>
+                <div class="menu-price">420 ₽</div>
+            </div>
+            
+            <!-- Позиция 3 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Классический Эспрессо">
+                <h3>Pro Эспрессо</h3>
+                <p>Чистый, бескомпромиссный вкус. Плотное тело, кремовая пенка и яркие ноты темного шоколада.</p>
+                <div class="menu-price">180 ₽</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты (Стиль Apple Pro) -->
+    <div id="contact" class="contact-section">
+        <h2 class="section-title">Ждем вас.</h2>
+        <p class="section-subtitle" style="color: #86868B; margin-bottom: 0;">Погрузитесь в атмосферу безупречного вкуса.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h4>Локация</h4>
+                <p>г. Москва<br>ул. Инноваций, д. 1</p>
+            </div>
+            <div class="contact-item">
+                <h4>Часы работы</h4>
+                <p>Пн-Пт: 08:00 – 22:00<br>Сб-Вс: 09:00 – 23:00</p>
+            </div>
+            <div class="contact-item">
+                <h4>Связь</h4>
+                <p>8 (800) 123-45-67<br>hello@twodonuts.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <p>Copyright © 2026 Два пончика и чашка кофе. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
