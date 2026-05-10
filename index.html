@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Три пончика и чашка кофе | Premium</title>
+    <title>Два пончика и чашка кофе | Premium</title>
+    <!-- Подключаем шрифт Inter для Apple-стилистики -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Подключение шрифта Inter (аналог Apple San Francisco) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
-        /* CSS-переменные в стиле Apple (Светлая тема) */
+        /* Apple-стиль: переменные и базовые настройки */
         :root {
-            --bg-color: #FBFBFD;
-            --surface-color: #FFFFFF;
-            --text-primary: #1D1D1F;
-            --text-secondary: #86868B;
-            --accent-color: #000000;
-            --accent-hover: #333333;
-            --border-color: rgba(0, 0, 0, 0.05);
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --bg-body: #F5F5F7;
+            --bg-card: #FFFFFF;
+            --text-main: #1D1D1F;
+            --text-muted: #86868B;
+            --accent: #D95D14; /* Вкусный карамельный акцент */
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         html {
@@ -33,407 +33,533 @@
         }
 
         body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.4;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* Навигация с эффектом Glassmorphism */
-        nav {
+        /* Навигация (Glassmorphism) */
+        header {
             position: fixed;
             top: 0;
             width: 100%;
-            height: 54px;
-            background-color: rgba(251, 251, 253, 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        .nav-container {
-            width: 100%;
-            max-width: 1000px;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            transition: all 0.3s ease;
         }
 
         .logo {
-            font-weight: 600;
-            font-size: 17px;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            color: var(--text-primary);
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        /* Кнопка в стиле Apple */
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: #FFFFFF;
-            padding: 14px 28px;
-            border-radius: 980px; /* Идеальный овал */
-            font-size: 17px;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-hover);
-            transform: scale(1.02);
-        }
-
-        /* Секции: Общие правила */
-        section {
-            padding: 120px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 48px;
+            font-size: 1.25rem;
             font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
             letter-spacing: -0.03em;
-            margin-bottom: 20px;
         }
 
-        .section-subtitle {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--text-secondary);
-            margin-bottom: 80px;
-            letter-spacing: -0.01em;
+        .logo span {
+            color: var(--accent);
         }
 
-        /* Hero (Главный экран) */
-        .hero {
-            padding-top: 160px;
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        /* Главный экран (Hero) */
+        #hero {
+            padding: 12rem 5% 5rem;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: fadeIn 1.2s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            background-color: var(--bg-body);
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-badge {
+            background-color: rgba(217, 93, 20, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1.2rem;
+            border-radius: 980px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
         }
 
-        .hero h1 {
-            font-size: 80px;
-            font-weight: 700;
+        #hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
             letter-spacing: -0.04em;
             line-height: 1.05;
-            margin-bottom: 24px;
-            max-width: 900px;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
         }
 
-        .hero p {
-            font-size: 28px;
+        #hero p {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 2.5rem;
             font-weight: 400;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
             letter-spacing: -0.01em;
-            max-width: 700px;
         }
 
-        .hero-image {
-            margin-top: 60px;
+        .btn {
+            display: inline-block;
+            background-color: var(--text-main);
+            color: #FFFFFF;
+            padding: 1.2rem 2.5rem;
+            border-radius: 980px; /* Идеальный овал Apple */
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #000000;
+            transform: scale(1.03);
+        }
+
+        .hero-image-container {
+            margin-top: 4rem;
             width: 100%;
-            max-width: 1000px;
-            height: 600px;
-            border-radius: 32px;
-            object-fit: cover;
+            max-width: 1200px;
+            height: 60vh;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            transition: var(--transition);
         }
 
-        /* О компании */
-        .about-grid {
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Общие стили секций */
+        section {
+            padding: 7rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text-main);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Раздел "О нас" */
+        #about {
+            background-color: var(--bg-card);
+        }
+
+        .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 4rem;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .about-text h2 {
-            font-size: 40px;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 24px;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
         }
 
         .about-text p {
-            font-size: 21px;
-            line-height: 1.5;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
-        .about-text p span {
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .about-image {
+        .about-image img {
             width: 100%;
-            height: 600px;
-            border-radius: 32px;
-            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
 
-        /* Меню (3 карточки) */
+        /* Раздел "Меню" */
+        #menu {
+            background-color: var(--bg-body);
+        }
+
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .menu-card {
-            background-color: var(--surface-color);
-            border-radius: 24px;
-            padding: 20px;
-            transition: var(--transition);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            cursor: pointer;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            text-align: left;
         }
 
         .menu-card:hover {
-            transform: scale(1.03);
+            transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
 
-        .menu-card img {
+        .menu-img-wrapper {
             width: 100%;
-            height: 300px;
-            border-radius: 16px;
-            object-fit: cover;
-            margin-bottom: 24px;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
         }
 
-        .menu-card h3 {
-            font-size: 24px;
+        .menu-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .menu-card:hover .menu-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .menu-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .menu-content h3 {
+            font-size: 1.4rem;
             font-weight: 600;
             letter-spacing: -0.01em;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
         }
 
-        .menu-card p {
-            font-size: 15px;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
+        .menu-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            flex-grow: 1;
             line-height: 1.5;
         }
 
-        .menu-price {
-            font-size: 17px;
+        .menu-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .btn-small {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 980px;
+            font-size: 0.9rem;
             font-weight: 600;
-            color: var(--text-primary);
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
 
-        /* Контакты (Темный блок в стиле Apple Pro) */
-        .contact-section {
-            background-color: #000000;
-            color: #F5F5F7;
-            padding: 120px 20px;
-            text-align: center;
-            border-radius: 40px;
-            max-width: 95%;
-            margin: 0 auto 40px;
+        .btn-small:hover {
+            background-color: #E8E8ED;
         }
 
-        .contact-section .section-title {
-            color: #FFFFFF;
+        /* Контакты */
+        #contact {
+            background-color: var(--bg-card);
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
             max-width: 1000px;
-            margin: 60px auto 0;
+            margin: 0 auto;
         }
 
-        .contact-item h4 {
-            font-size: 19px;
+        .contact-card {
+            background-color: var(--bg-body);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 12px;
-            color: #FFFFFF;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
 
-        .contact-item p {
-            font-size: 15px;
-            color: #86868B;
+        .contact-card p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
             line-height: 1.6;
         }
 
+        /* Футер */
         footer {
+            background-color: var(--bg-body);
+            padding: 3rem 5%;
             text-align: center;
-            padding: 30px;
-            font-size: 12px;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         /* Адаптивность */
         @media (max-width: 1024px) {
-            .hero h1 { font-size: 64px; }
-            .about-grid { grid-template-columns: 1fr; }
-            .about-image { height: 400px; }
-            .menu-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-image {
+                order: -1;
+            }
         }
 
         @media (max-width: 768px) {
-            nav { height: auto; padding: 15px 0; }
-            .nav-container { flex-direction: column; gap: 15px; }
-            .hero { padding-top: 140px; }
-            .hero h1 { font-size: 48px; }
-            .hero p { font-size: 21px; }
-            .hero-image { height: 350px; }
-            .section-title { font-size: 36px; }
-            .contact-grid { grid-template-columns: 1fr; gap: 30px; }
-            section { padding: 80px 20px; }
+            header {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            nav ul {
+                gap: 1.5rem;
+            }
+            .menu-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            #hero {
+                padding-top: 10rem;
+            }
+            .hero-image-container {
+                height: 40vh;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- Навигация -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Два Пончика & Кофе</div>
-            <ul class="nav-links">
-                <li><a href="#hero">Обзор</a></li>
-                <li><a href="#about">История</a></li>
+    <header>
+        <a href="#" class="logo">Два пончика <span>.</span></a>
+        <nav>
+            <ul>
+                <li><a href="#hero">Главная</a></li>
+                <li><a href="#about">Концепция</a></li>
                 <li><a href="#menu">Меню</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Главный экран -->
-    <section id="hero" class="hero">
-        <h1>Два пончика.<br>Одна идеальная чашка.</h1>
-        <p>Откройте для себя вкус, доведенный до абсолюта.</p>
-        <a href="#menu" class="btn">Изучить меню</a>
+    <section id="hero">
+        <div class="hero-badge">Эстетика вкуса</div>
+        <h1>Кофе и пончики.<br>Возведенные в абсолют.</h1>
+        <p>Идеальное начало вашего дня. Спешелти зерно и авторская выпечка, созданные с одержимостью к каждой детали.</p>
+        <a href="#menu" class="btn">Посмотреть меню</a>
         
-        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1920&q=80" alt="Идеальная чашка кофе" class="hero-image">
-    </section>
-
-    <!-- О нас -->
-    <section id="about">
-        <div class="about-grid">
-            <div class="about-text">
-                <h2>Создано с одержимостью.<br>Для вас.</h2>
-                <p><span>Мы не идем на компромиссы.</span> Когда мы создавали «Два пончика и чашка кофе», нашей целью было переосмыслить привычный ритуал. Никаких случайных ингредиентов. Только лучшее.</p>
-                <p>Мы используем исключительно 100% высокогорную арабику свежей обжарки и создаем выпечку по выверенным до грамма рецептам. Это не просто кофе. Это технологии, дизайн и вкус, слившиеся воедино.</p>
-            </div>
-            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1000&q=80" alt="Эстетика нашей кофейни" class="about-image">
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1600&q=80" alt="Идеальная чашка кофе">
         </div>
     </section>
 
-    <!-- Меню -->
+    <!-- Раздел Концепция -->
+    <section id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Дизайн вкуса.</h2>
+                <p>Мы верим, что кофе — это не просто напиток, а технология идеального утра. Мы отбираем лучшее спешелти зерно и обжариваем его так, чтобы раскрыть весь потенциал.</p>
+                <p>Наши пончики проектируются как произведения искусства: воздушное тесто, выверенный баланс сладости и премиальные ингредиенты. Ничего лишнего. Только чистый вкус.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80" alt="Эстетика кофейни">
+            </div>
+        </div>
+    </section>
+
+    <!-- Раздел Меню -->
     <section id="menu">
-        <h2 class="section-title">Фирменные напитки.</h2>
-        <p class="section-subtitle">Магия в каждом глотке.</p>
+        <div class="section-header">
+            <h2 class="section-title">Наши хиты.</h2>
+            <p class="section-subtitle">Продуманы до мелочей.</p>
+        </div>
         
         <div class="menu-grid">
-            <!-- Позиция 1 -->
+            <!-- Товар 1: Капучино -->
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&w=800&q=80" alt="Apple Style Латте">
-                <h3>Signature Латте</h3>
-                <p>Шелковистая текстура взбитого молока, двойной шот эспрессо и едва уловимая нотка мадагаскарской ванили.</p>
-                <div class="menu-price">350 ₽</div>
+                <div class="menu-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=800&q=80" alt="Капучино">
+                </div>
+                <div class="menu-content">
+                    <h3>Фирменный Капучино</h3>
+                    <p>Идеальный баланс 100% арабики и глянцевой микропенки. Классика в безупречном исполнении.</p>
+                    <div class="menu-bottom">
+                        <span class="price">250 ₽</span>
+                        <button class="btn-small">Выбрать</button>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Позиция 2 -->
+
+            <!-- Товар 2: Пончик Карамель-Пекан -->
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=800&q=80" alt="Айс Карамель">
-                <h3>Cold Brew Карамель</h3>
-                <p>Кофе холодного заваривания, который настаивается 18 часов. Подается с домашней соленой карамелью.</p>
-                <div class="menu-price">420 ₽</div>
+                <div class="menu-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80" alt="Пончик с карамелью и орехами">
+                </div>
+                <div class="menu-content">
+                    <h3>Пончик «Карамель-Пекан»</h3>
+                    <p>Мягкое тесто, соленая карамель собственного приготовления и обжаренный хрустящий пекан.</p>
+                    <div class="menu-bottom">
+                        <span class="price">180 ₽</span>
+                        <button class="btn-small">Выбрать</button>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Позиция 3 -->
+
+            <!-- Товар 3: Цитрусовый раф -->
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Классический Эспрессо">
-                <h3>Pro Эспрессо</h3>
-                <p>Чистый, бескомпромиссный вкус. Плотное тело, кремовая пенка и яркие ноты темного шоколада.</p>
-                <div class="menu-price">180 ₽</div>
+                <div class="menu-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80" alt="Цитрусовый раф">
+                </div>
+                <div class="menu-content">
+                    <h3>Цитрусовый Раф</h3>
+                    <p>Шелковистая текстура сливок, мягкий эспрессо и натуральная пудра из цедры сладкого апельсина.</p>
+                    <div class="menu-bottom">
+                        <span class="price">320 ₽</span>
+                        <button class="btn-small">Выбрать</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 4: Пончик Ягодный взрыв -->
+            <div class="menu-card">
+                <div class="menu-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1584286595398-a59f21d313f5?auto=format&fit=crop&w=800&q=80" alt="Пончик с ягодной глазурью">
+                </div>
+                <div class="menu-content">
+                    <h3>Пончик «Ягодный взрыв»</h3>
+                    <p>Легкая кислинка лесных ягод, спрятанная под слоем премиального белого шоколада.</p>
+                    <div class="menu-bottom">
+                        <span class="price">190 ₽</span>
+                        <button class="btn-small">Выбрать</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 5: Альтернатива V60 -->
+            <div class="menu-card">
+                <div class="menu-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1495474472207-464a8d960f28?auto=format&fit=crop&w=800&q=80" alt="Кофе V60 пуровер">
+                </div>
+                <div class="menu-content">
+                    <h3>Альтернатива V60</h3>
+                    <p>Фильтр-кофе ручного заваривания. Раскрывает чистый профиль зерна с нотами жасмина и персика.</p>
+                    <div class="menu-bottom">
+                        <span class="price">280 ₽</span>
+                        <button class="btn-small">Выбрать</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 6: Пончик Двойной шоколад -->
+            <div class="menu-card">
+                <div class="menu-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1558486012-817176f84c6d?auto=format&fit=crop&w=800&q=80" alt="Шоколадный пончик">
+                </div>
+                <div class="menu-content">
+                    <h3>Пончик «Двойной шоколад»</h3>
+                    <p>Насыщенная база брауни, покрытая плотным слоем темного бельгийского шоколада.</p>
+                    <div class="menu-bottom">
+                        <span class="price">200 ₽</span>
+                        <button class="btn-small">Выбрать</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Контакты (Стиль Apple Pro) -->
-    <div id="contact" class="contact-section">
-        <h2 class="section-title">Ждем вас.</h2>
-        <p class="section-subtitle" style="color: #86868B; margin-bottom: 0;">Погрузитесь в атмосферу безупречного вкуса.</p>
-        
+    <!-- Раздел Контакты -->
+    <section id="contact">
+        <div class="section-header">
+            <h2 class="section-title">Ждем вас.</h2>
+        </div>
         <div class="contact-grid">
-            <div class="contact-item">
-                <h4>Локация</h4>
-                <p>г. Москва<br>ул. Инноваций, д. 1</p>
+            <div class="contact-card">
+                <h3>Локация</h3>
+                <p>ул. Кофейная, д. 10</p>
+                <p>Москва</p>
+                <p style="margin-top: 1rem; font-size: 0.95rem;">(5 минут от ст. метро Ароматная)</p>
             </div>
-            <div class="contact-item">
-                <h4>Часы работы</h4>
-                <p>Пн-Пт: 08:00 – 22:00<br>Сб-Вс: 09:00 – 23:00</p>
-            </div>
-            <div class="contact-item">
-                <h4>Связь</h4>
-                <p>8 (800) 123-45-67<br>hello@twodonuts.com</p>
+            <div class="contact-card">
+                <h3>Часы работы</h3>
+                <p>Будни: 08:00 – 22:00</p>
+                <p>Выходные: 09:00 – 23:00</p>
+                <p style="margin-top: 1rem; font-size: 0.95rem;">Без перерывов</p>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Футер -->
     <footer>
-        <p>Copyright © 2026 Два пончика и чашка кофе. Все права защищены.</p>
+        <p>&copy; 2023 Два пончика. Все права защищены. Разработано с вниманием к деталям.</p>
     </footer>
 
 </body>
